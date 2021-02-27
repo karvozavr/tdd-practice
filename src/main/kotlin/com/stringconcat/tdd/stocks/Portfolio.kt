@@ -11,9 +11,8 @@ class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
         marketInfoProvider: MarketInfoProvider,
         rateProvider: RateProvider
     ): Money {
-        return instruments.asSequence()
+        return instruments
             .map { priceForInstrument(instrument = it.key, inPossession = it.value, marketInfoProvider) }
-            .toList()
             .sumToCurrency(inCurrency, rateProvider)
     }
 
