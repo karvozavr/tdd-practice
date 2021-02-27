@@ -3,7 +3,7 @@ package com.stringconcat.tdd
 class Pocket(
     val a: Money,
     val b: Money
-): Expression {
+) : Expression {
     fun reduce(
         to: Money.Currency,
         rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
@@ -11,7 +11,7 @@ class Pocket(
         return if (a.currency == to && b.currency == to) {
             Money((a.amount + b.amount), to)
         } else {
-            Money((a.amount + b.amount)* 2, to)
+            Money((a.amount + b.amount) * 2, to)
         }
     }
 }
