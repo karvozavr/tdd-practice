@@ -13,7 +13,7 @@ class Pocket(
         return Money(aTargetCurrencyAmount + bTargetCurrencyAmount, targetCurrency)
     }
 
-    private fun targetCurrencyAmount(
+    private inline fun targetCurrencyAmount(
         money: Money,
         targetCurrency: Money.Currency,
         rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
