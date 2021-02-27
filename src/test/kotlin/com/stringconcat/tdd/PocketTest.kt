@@ -35,17 +35,6 @@ internal class PocketTest {
         pocket.reduce(targetCurrency = Money.Currency.USD, rateProvider = { BigDecimal(1) }) shouldBe Money.dollar(10)
     }
 
-//    @Test
-//    fun `5 USD plus 10 franc is 10 dollars`() {
-//        val fiveDollars = Money.dollar(5)
-//        val tenFrancs = Money.franc(10)
-//
-//        val pocket = fiveDollars + tenFrancs
-//        val converted = pocket.reduce(Money.Currency.USD, rate?? )
-//
-//        converted shouldBe Money.dollar(10)
-//    }
-
     @Test
     fun `5 USD + 5 USD reduced to 20 CHF with rate of 1 to 2`() {
         val pocket = Money.dollar(5) + Money.dollar(5)

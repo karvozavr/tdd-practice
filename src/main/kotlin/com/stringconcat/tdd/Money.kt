@@ -26,6 +26,10 @@ open class Money internal constructor(
         return "Money(amount=$amount, currency=$currency)"
     }
 
+    override fun hashCode(): Int {
+        return (amount to currency).hashCode()
+    }
+
     enum class Currency {
         USD, CHF
     }
