@@ -1,12 +1,14 @@
 package com.stringconcat.tdd
 
+typealias RateProvider = (Pair<Money.Currency, Money.Currency>) -> Int
+
 class Pocket(
     val a: Money,
     val b: Money
 ) : Expression {
     fun reduce(
         targetCurrency: Money.Currency,
-        rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
+        rateProvider: RateProvider
     ): Money {
         val aTargetCurrencyAmount = targetCurrencyAmount(a, targetCurrency, rateProvider)
         val bTargetCurrencyAmount = targetCurrencyAmount(b, targetCurrency, rateProvider)
