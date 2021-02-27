@@ -52,4 +52,10 @@ internal class PocketTest {
         val pocket = Money.dollar(5) + Money.dollar(5)
         pocket.reduce(targetCurrency = Money.Currency.CHF, rateProvider = { BigDecimal(0.5) }) shouldBe Money.franc(5)
     }
+
+    @Test
+    fun `10 USD + 5 CHF + 10 USD is 15 CHF with rate of 1 to 2`() {
+        val money = listOf(Money.dollar(10), Money.franc(5), Money.dollar(10))
+        money.sumToCurrency(targetCurrency = Money.Currency.USD, rateProvider = { BigDecimal(2) })
+    }
 }

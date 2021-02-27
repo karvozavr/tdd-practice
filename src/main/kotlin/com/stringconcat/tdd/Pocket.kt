@@ -33,10 +33,7 @@ operator fun Money.plus(other: Money): Pocket {
     return Pocket(this, other)
 }
 
-fun Collection<Money>.sumToCurrency(targetCurrency: Money.Currency): Money =
+fun Collection<Money>.sumToCurrency(targetCurrency: Money.Currency, rateProvider: RateProvider): Money =
     this.fold(Money(amount = 0, currency = targetCurrency)) { acc, money ->
-        Pocket(acc, money).reduce(
-            targetCurrency,
-            rateProvider = { BigDecimal.ZERO }
-        )
+        Pocket(acc, money).reduce(targetCurrency, rateProvider)
     }

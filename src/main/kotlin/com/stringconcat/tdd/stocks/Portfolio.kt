@@ -2,6 +2,7 @@ package com.stringconcat.tdd.stocks
 
 import com.stringconcat.tdd.Money
 import com.stringconcat.tdd.sumToCurrency
+import java.math.BigDecimal
 
 class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
 
@@ -12,7 +13,7 @@ class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
         return instruments.asSequence()
             .map { priceForInstrument(instrument = it.key, inPosession = it.value, marketInfoProvider) }
             .toList()
-            .sumToCurrency(inCurrency)
+            .sumToCurrency(inCurrency, { BigDecimal.ZERO })
     }
 
     private fun priceForInstrument(
