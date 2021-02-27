@@ -8,12 +8,20 @@ class Pocket(
         targetCurrency: Money.Currency,
         rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
     ): Money {
-        val aAmountInTargetCurrency =
-            if (a.currency == targetCurrency) a.amount else a.amount * rateProvider(a.currency to targetCurrency)
-        val bAmountInTargetCurrency =
-            if (b.currency == targetCurrency) b.amount else b.amount * rateProvider(b.currency to targetCurrency)
-        return Money(aAmountInTargetCurrency + bAmountInTargetCurrency, targetCurrency)
+        val aTargetCurrencyAmount = targetCurrencyAmount(a, targetCurrency, rateProvider)
+        val bTargetCurrencyAmount = targetCurrencyAmount(b, targetCurrency, rateProvider)
+        return Money(aTargetCurrencyAmount + bTargetCurrencyAmount, targetCurrency)
     }
+
+    private fun targetCurrencyAmount(
+        money: Money,
+        targetCurrency: Money.Currency,
+        rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
+    ) =
+        if (money.currency == targetCurrency)
+            money.amount
+        else
+            money.amount * rateProvider(money.currency to targetCurrency)
 }
 
 operator fun Money.plus(other: Money): Pocket {
