@@ -3,7 +3,6 @@ package com.stringconcat.tdd.stocks
 import com.stringconcat.tdd.Money
 import com.stringconcat.tdd.RateProvider
 import com.stringconcat.tdd.sumToCurrency
-import java.math.BigDecimal
 
 class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
 
