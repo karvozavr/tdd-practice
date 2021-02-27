@@ -46,9 +46,9 @@ internal class PocketTest {
 //    }
 
     @Test
-    fun `5 USD + 5 USD reduced to 20 CHF`() {
+    fun `5 USD + 5 USD reduced to 20 CHF with rate of 1 to 2`() {
         val pocket = Money.dollar(5) + Money.dollar(5)
 
-        pocket.reduce(to = Money.Currency.CHF, { 2 }) shouldBe Money.franc(20)
+        pocket.reduce(to = Money.Currency.CHF, rateProvider = { 2 }) shouldBe Money.franc(20)
     }
 }
