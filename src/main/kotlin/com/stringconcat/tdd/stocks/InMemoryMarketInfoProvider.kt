@@ -1,5 +1,6 @@
-package com.stringconcat.tdd
+package com.stringconcat.tdd.stocks
 
+import com.stringconcat.tdd.Money
 import java.lang.RuntimeException
 
 class InMemoryMarketInfoProvider(private val prices: Map<Shares, Money> = emptyMap()) : MarketInfoProvider {

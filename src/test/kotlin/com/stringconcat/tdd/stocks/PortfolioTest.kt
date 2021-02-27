@@ -1,5 +1,6 @@
-package com.stringconcat.tdd
+package com.stringconcat.tdd.stocks
 
+import com.stringconcat.tdd.Money
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 

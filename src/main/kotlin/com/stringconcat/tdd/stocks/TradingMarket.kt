@@ -1,4 +1,4 @@
-package com.stringconcat.tdd
+package com.stringconcat.tdd.stocks
 
 enum class TradingMarket {
     NASDAQ,

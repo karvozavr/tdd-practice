@@ -1,4 +1,6 @@
-package com.stringconcat.tdd
+package com.stringconcat.tdd.stocks
+
+import com.stringconcat.tdd.Money
 
 interface MarketInfoProvider {
 
