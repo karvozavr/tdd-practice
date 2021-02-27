@@ -5,13 +5,13 @@ class Pocket(
     val b: Money
 ) : Expression {
     fun reduce(
-        to: Money.Currency,
+        targetCurrency: Money.Currency,
         rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
     ): Money {
-        return if (a.currency == to && b.currency == to) {
-            Money((a.amount + b.amount), to)
+        return if (a.currency == targetCurrency && b.currency == targetCurrency) {
+            Money((a.amount + b.amount), targetCurrency)
         } else {
-            Money((a.amount + b.amount) * 2, to)
+            Money((a.amount + b.amount) * rateProvider(a.currency to targetCurrency), targetCurrency)
         }
     }
 }
