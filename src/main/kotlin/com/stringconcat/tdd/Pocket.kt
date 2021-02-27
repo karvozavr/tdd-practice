@@ -1,6 +1,8 @@
 package com.stringconcat.tdd
 
-typealias RateProvider = (Pair<Money.Currency, Money.Currency>) -> Int
+import java.math.BigDecimal
+
+typealias RateProvider = (Pair<Money.Currency, Money.Currency>) -> BigDecimal
 
 class Pocket(
     val a: Money,
@@ -12,18 +14,18 @@ class Pocket(
     ): Money {
         val aTargetCurrencyAmount = targetCurrencyAmount(a, targetCurrency, rateProvider)
         val bTargetCurrencyAmount = targetCurrencyAmount(b, targetCurrency, rateProvider)
-        return Money(aTargetCurrencyAmount + bTargetCurrencyAmount, targetCurrency)
+        return Money(aTargetCurrencyAmount.plus(bTargetCurrencyAmount), targetCurrency)
     }
 
     private inline fun targetCurrencyAmount(
         money: Money,
         targetCurrency: Money.Currency,
-        rateProvider: (Pair<Money.Currency, Money.Currency>) -> Int
-    ) =
+        rateProvider: RateProvider
+    ): BigDecimal =
         if (money.currency == targetCurrency)
-            money.amount
+            BigDecimal(money.amount)
         else
-            money.amount * rateProvider(money.currency to targetCurrency)
+            BigDecimal(money.amount) * rateProvider(money.currency to targetCurrency)
 }
 
 operator fun Money.plus(other: Money): Pocket {

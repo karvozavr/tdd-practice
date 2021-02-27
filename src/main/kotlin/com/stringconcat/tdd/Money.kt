@@ -1,9 +1,16 @@
 package com.stringconcat.tdd
 
+import java.math.BigDecimal
+
 open class Money internal constructor(
     val amount: Int,
     val currency: Currency
 ) : Expression {
+
+    constructor(
+        amount: BigDecimal,
+        currency: Currency
+    ) : this(amount.toInt(), currency)
 
     override fun equals(other: Any?): Boolean {
         if (other !is Money) return false
