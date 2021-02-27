@@ -1,8 +1,7 @@
 package com.stringconcat.tdd.stocks
 
 import com.stringconcat.tdd.Money
-import com.stringconcat.tdd.Pocket
-import java.math.BigDecimal
+import com.stringconcat.tdd.sumToCurrency
 
 class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
 
@@ -12,12 +11,8 @@ class Portfolio(private val instruments: Map<Shares, Int> = emptyMap()) {
     ): Money {
         return instruments.asSequence()
             .map { priceForInstrument(instrument = it.key, inPosession = it.value, marketInfoProvider) }
-            .fold(Money(amount = 0, currency = inCurrency)) { acc, money ->
-                Pocket(acc, money).reduce(
-                    inCurrency,
-                    rateProvider = { BigDecimal.ZERO }
-                )
-            }
+            .toList()
+            .sumToCurrency(inCurrency)
     }
 
     private fun priceForInstrument(

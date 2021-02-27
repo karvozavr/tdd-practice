@@ -8,7 +8,6 @@ internal class PortfolioTest {
 
     private val TESLA_SHARES = Shares(name = "TSLA", market = TradingMarket.NASDAQ)
 
-
     @Test
     fun `empty portfolio should have price of 0 USD`() {
         val portfolio = Portfolio()
